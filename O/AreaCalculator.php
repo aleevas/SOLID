@@ -3,11 +3,17 @@
 namespace Acme;
 
 class AreaCalculator {
-    
-    public function calculate($squares){
 
-        foreach ($squares as $square) {
-            $area[] = $square->whidth * $square->height;
+    public function calculate($shapes){
+
+        foreach ($shapes as $shape) {
+            if (is_a($shape, 'Square')) {
+                $area[] = $shape->whidth * $shape->height;
+
+            }
+            else {
+                $area[] = $shape->radius * $shape->radius * pi();
+            }
         }
         return array_sum($area);
 
