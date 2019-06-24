@@ -1,12 +1,20 @@
 <?php
 
-interface WorkInterface {
+interface ManagableInterface {
+    public function beManaged();
+}
+interface WorkableInterface {
     public function work();
     public function sleep();       
     
 }
 
-class HumanWorker implements WorkInterface {
+interface SleepableInterface {
+    public function sleep();       
+    
+}
+
+class HumanWorker implements WorkableInterface, SleepableInterface, ManagableInterface {
     public function work(){
         return 'Human work';
     }
@@ -14,22 +22,26 @@ class HumanWorker implements WorkInterface {
     public function sleep(){
         return 'Human sleep';
     }
+
+    public function beManaged(){
+        $this->work();
+        $this->sleep(); 
+    }
 }
 
-class AndroidWorker implements WorkInterface {
+class AndroidWorker implements WorkableInterface, ManagableInterface {
     public function work(){
         return 'Android work';
 
     }
 
-    public function sleep(){
-        return null; // violents the ISP
+    public function beManaged(){
+        $this->work();
     }
 }
 
 class Capitan {
-    public function manage(WorkInterface $worker){
-        $worker->work();
-        $worker->sleep();
+    public function manage(ManagableInterface $worker){
+        $worker->beManaged();
     }
 }
