@@ -16,6 +16,6 @@ class FileLessonRepository implements LessonRepositoryInterface {
 class DBLessonReposotory implements LessonRepositoryInterface {
 
     public function getAll(){
-        return Lesson::all();// violates LSP, cuz retunts object, but array expected
+        return Lesson::all()->toArray();// fix violate of LSP
     }
 }
