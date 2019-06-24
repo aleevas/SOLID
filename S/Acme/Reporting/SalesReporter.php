@@ -2,31 +2,27 @@
 namespace Acme\Reporting;
 
 use Acme\Repositories\SalesRepository;
-use Exception;
+use Acme\Reporting\SalesOutputInterface;
 
 class SalesReporter {
 
     /**
      * @var SalesRepository.
     **/
-
     private $repo;
+
 
     public function __construct(SalesRepository $repo){
         $this->repo = $repo;
         
     }
 
-    public function beetween($startDate, $endDate){
+    public function beetween($startDate, $endDate, SalesOutputInterface $fromatter){
 
-        // Get sales from DB.
+        // Get data for sales.
         $sales = $this->repo->beetwen($startDate, $endDate);
 
-        return $this->format($sales);
+        return $fromatter->output($sales);
     }
-    
-    protected function format($sales){
-        return "<h1>Sales: {$sales}</h1>";
-        
-    }
+
 }
