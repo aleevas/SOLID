@@ -6,8 +6,7 @@ use Auth, DB, Exception;
 class SalesReporter {
 
     public function beetween($startDate, $endDate){
-        // Perform authentication.
-        if (! Auth::check() ) throw new Exception('Authentication required for reporting');
+
         // Get sales from DB.
         $sales = $this->queryDBForSalesBeetwen($startDate, $endDate);
         return $this->format($sales);
