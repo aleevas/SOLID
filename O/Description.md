@@ -5,6 +5,8 @@
 
 ### By Jeffery Way
 Change behavior without modifying source code...
+**Steps**:
+ - Separate extensible behavior behind an interface, and flip the dependencies. 
 
 **Notice!**
 This code is not working, just as an example!
